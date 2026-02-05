@@ -1,0 +1,18 @@
+name: order-food-app
+services:
+  frontend:
+    build: frontend
+    environment:
+      - MONGODB_CONNECTION_STRING="mongodb://mongodb/projectz"
+    ports: 
+      - 8080:8080
+  backend:
+    build: backend
+    ports: 
+      - 3000:3000
+  mongodb:
+    image: mongo:8.2.4
+    ports:
+      - 37017:27017
+    volumes:
+      - ./data:/data/db

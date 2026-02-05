@@ -1,0 +1,10 @@
+extends layout 
+
+block content 
+  h2 Restaurants
+  p There are #{restaurants.length} restaurants ready for order.
+
+  ol 
+    each restaurant in restaurants
+      li 
+        a(href=`/restaurants/${restaurant.id}`) #{restaurant.name}

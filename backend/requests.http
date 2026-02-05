@@ -1,0 +1,129 @@
+POST https://backend-38013665540.europe-west1.run.app/users HTTP/1.1
+content-type: application/json
+
+{"name":"new user", "age": "32"}
+
+###
+GET http://localhost:3000/users/69699b2befc99527e91799cc HTTP/1.1
+
+###
+DELETE http://localhost:3000/users/69699b2befc99527e91799cc HTTP/1.1
+
+###
+PATCH http://localhost:3000/users/69699b67efc99527e91799d0 HTTP/1.1
+content-type: application/json
+
+{"name":"new username1"}
+
+###
+POST https://backend-38013665540.europe-west1.run.app/restaurants HTTP/1.1
+content-type: application/json
+
+{"name":"new restaurant",
+"menu": [
+    { "food": { "name": "Food1"} },
+    { "food": { "name": "Food2"} }
+]
+}
+
+###
+
+DELETE http://localhost:3000/restaurants/69699bc8efc99527e91799d7 HTTP/1.1
+
+###
+
+POST http://localhost:3000/users/69774e8a5d55fb26f0bea6da/orders HTTP/1.1
+content-type: application/json
+
+{"restaurantId": "69774e265d55fb26f0bea6ae", "food": "Food3", "address": "Mersin"}
+
+###
+
+PATCH http://localhost:3000/restaurants/69699bf2efc99527e91799dc HTTP/1.1
+content-type: application/json
+
+{"name":"new restaurant name"}
+
+
+###
+PATCH http://localhost:3000/restaurants/69699bf2efc99527e91799dc/menu HTTP/1.1
+content-type: application/json
+
+{"name": "Food5"}
+
+###
+POST http://localhost:3000/users/register
+content-type: application/json
+
+{
+  "email": "ekinn@test.com",
+  "password": "1234567",
+  "name": "Ekinn",
+  "age": 25
+}
+
+###
+POST http://localhost:3000/users/login
+content-type: application/json
+
+{
+  "email": "ekinn@test.com",
+  "password": "1234567"
+}
+
+###
+POST http://localhost:3000/users/6983f5cf8c309a8cb80bc47f/addresses
+content-type: application/json
+
+{
+  "street": "Bağdat Caddesi 123",
+  "city": "Istanbul",
+  "zipCode": "34000",
+  "isDefault": true
+}
+
+###
+POST http://localhost:3000/restaurants/register
+content-type: application/json
+
+{
+  "email": "burgerking@test.com",
+  "password": "123456",
+  "name": "Burger King",
+  "ownerName": "Ahmet Yılmaz",
+  "address": {
+    "street": "Bağdat Caddesi 456",
+    "city": "Istanbul",
+    "zipCode": "34000"
+  }
+}
+
+###
+PATCH http://localhost:3000/restaurants/6983f813dbcf837210bf4088/menu
+content-type: application/json
+
+{
+  "name": "Whopper Menü",
+  "price": 120,
+  "category": "Burgers"
+}
+
+###
+POST http://localhost:3000/users/6983f5cf8c309a8cb80bc47f/orders
+content-type: application/json
+
+{
+  "restaurantId": "6983f813dbcf837210bf4088",
+  "items": [
+    {
+      "foodName": "Whopper Menü",
+      "price": 120,
+      "quantity": 2
+    }
+  ],
+  "address": {
+    "street": "Bağdat Caddesi 123",
+    "city": "Istanbul",
+    "zipCode": "34000"
+  }
+}

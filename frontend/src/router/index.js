@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import UsersView from "../views/UsersView.vue";
-import UserView from "../views/UserView.vue";
-import CreateOrderView from "../views/CreateOrderView.vue";
-import RestaurantsView from "../views/RestaurantsView.vue";
-import RestaurantView from "../views/RestaurantView.vue";
-import UserRegisterView from "../views/UserRegisterView.vue";
+
+import HomeView from "@/views/HomeView.vue";
+import UserRegisterView from "@/views/UserRegisterView.vue";
+import UserLoginView from "@/views/UserLoginView.vue";
+import UserDashboardView from "@/views/UserDashboardView.vue";
+import CreateOrderView from "@/views/CreateOrderView.vue";
+
+import RestaurantRegisterView from "@/views/RestaurantRegisterView.vue";
+import RestaurantLoginView from "@/views/RestaurantLoginView.vue";
+import RestaurantDashboardView from "@/views/RestaurantDashboardView.vue";
 
 const routes = [
   {
@@ -14,52 +17,65 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/users",
-    name: "users",
-    component: UsersView,
+    path: "/users/register",
+    name: "user-register",
+    component: UserRegisterView,
   },
   {
-    path: "/users/:userId",
-    name: "user-detail",
-    component: UserView,
+    path: "/users/login",
+    name: "user-login",
+    component: UserLoginView,
+  },
+  {
+    path: "/users/:userId/dashboard",
+    name: "user-dashboard",
+    component: UserDashboardView,
     props: true,
+    meta: { requiresUserAuth: true },
   },
   {
     path: "/users/:userId/order",
     name: "create-order",
     component: CreateOrderView,
     props: true,
+    meta: { requiresUserAuth: true },
   },
   {
-    path: "/restaurants",
-    name: "restaurants",
-    component: RestaurantsView,
+    path: "/restaurants/register",
+    name: "restaurant-register",
+    component: RestaurantRegisterView,
   },
   {
-    path: "/restaurants/:restaurantId",
-    name: "restaurant-detail",
-    component: RestaurantView,
+    path: "/restaurants/login",
+    name: "restaurant-login",
+    component: RestaurantLoginView,
+  },
+  {
+    path: "/restaurants/:restaurantId/dashboard",
+    name: "restaurant-dashboard",
+    component: RestaurantDashboardView,
     props: true,
+    meta: { requiresUserAuth: true },
   },
-  {
-    path: "/register",
-    name: "user-register",
-    component: UserRegisterView,
-  },
-  // {
-  //   path: "/about",
-  //   name: "about",
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () =>
-  //     import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
-  // },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresUserAuth) {
+    const userToken = localStorage.getItem("userToken");
+    if (!userToken) return next({ name: "user-login" });
+  }
+
+  if (to.meta.requiresRestaurantAuth) {
+    const restaurantToken = localStorage.getItem("restaurantToken");
+    if (!restaurantToken) return next({ name: "restaurant-login" });
+  }
+
+  next();
 });
 
 export default router;

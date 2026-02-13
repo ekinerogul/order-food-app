@@ -1,13 +1,6 @@
-const fs = require("fs");
-const flatted = require("flatted");
-
 class BaseService {
   constructor(model) {
     this.model = model;
-  }
-
-  save(objects) {
-    return this.model.insert(objects);
   }
 
   load() {
@@ -15,7 +8,7 @@ class BaseService {
   }
 
   async insert(object) {
-    return await this.model.create(object);
+    return this.model.create(object);
   }
 
   async removeBy(property, value) {
@@ -23,11 +16,17 @@ class BaseService {
   }
 
   async update(id, object) {
-    return this.model.findByIdAndUpdate(id, object);
+    return this.model.findByIdAndUpdate(id, object, { new: true });
   }
 
   async find(id) {
     return this.model.findById(id);
+  }
+
+  async findOrFail(id, errorMessage = "NOT_FOUND") {
+    const doc = await this.model.findById(id);
+    if (!doc) throw new Error(errorMessage);
+    return doc;
   }
 
   async findBy(property, value) {

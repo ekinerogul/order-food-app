@@ -1,36 +1,30 @@
-<template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/users">Users</router-link> |
-    <router-link to="/restaurants">Restaurants</router-link>
-  </nav>
-  <router-view />
-</template>
 <script>
+import { useUserStore } from "@/stores/userStore";
+import { useRestaurantStore } from "@/stores/restaurantStore";
+
 export default {
   name: "App",
+  computed: {
+    userStore() {
+      return useUserStore();
+    },
+    restaurantStore() {
+      return useRestaurantStore();
+    },
+    isUserLoggedIn() {
+      return !!this.userStore.currentUser;
+    },
+    isRestaurantLoggedIn() {
+      return !!this.restaurantStore.currentRestaurant;
+    },
+    isLoggedIn() {
+      return this.isUserLoggedIn || this.isRestaurantLoggedIn;
+    },
+  },
 };
 </script>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+<template lang="pug">
+div#app
+  router-view
+</template>

@@ -1,27 +1,50 @@
+require("dotenv").config();
 const express = require("express");
-const bodyParser = require("body-parser");
 const cors = require("cors");
+
+require("./mongo-connection");
 
 const usersRouter = require("./routes/users");
 const restaurantsRouter = require("./routes/restaurants");
 const orderRouter = require("./routes/orders");
 
-require("./mongo-connection");
-
 const app = express();
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors());
-
-app.set("view engine", "pug");
 
 app.use("/users", usersRouter);
 app.use("/restaurants", restaurantsRouter);
 app.use("/orders", orderRouter);
 
-// Global error handler: next(err) cagirilan hatalari yakalayip 500 donmesi icin ve test kullanimi icin eklendi.
+app.get("/", (req, res) => {
+  res.send("Food Order API is running.");
+});
 
 app.use((err, req, res, next) => {
-  res.status(500).send("Internal Server Error");
+  console.error("Error:", {
+    message: err.message,
+    stack: err.stack,
+    timestamp: new Date().toISOString(),
+  });
+
+  const statusCode = err.status || 500;
+  const message = err.message || "Internal Server Error";
+
+  res.status(statusCode).json({
+    success: false,
+    message: message,
+  });
 });
+
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server started listening on port ${port}`);
+});
+
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "http://localhost:8080",
+  credentials: true,
+};
+app.use(cors(corsOptions));
 
 module.exports = app;

@@ -1,31 +1,28 @@
 {
   "name": "order-food-app-backend",
   "version": "1.0.0",
-  "description": "Don't know what to watch ?",
+  "description": "Food Ordering App Backend API",
   "main": "index.js",
   "scripts": {
-    "start": "node bin/www",
-    "watch": "nodemon --ignore '*.json' .bin/www",
+    "start": "node index.js",
+    "dev": "nodemon index.js",
     "test": "jest --coverage --verbose",
     "test-watch": "jest --verbose --watch"
   },
   "author": "Ekin Erogul <ekinerogul@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^2.2.1",
-    "colors": "^1.4.0",
-    "cors": "^2.8.6",
-    "express": "^5.2.1",
-    "flatted": "^3.3.3",
-    "mongoose": "^9.1.1",
-    "mongoose-autopopulate": "^1.2.1",
-    "uuid": "^13.0.0"
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^17.3.1",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^8.0.0",
+    "mongoose-autopopulate": "^1.1.0"
   },
   "devDependencies": {
-    "jest": "^30.2.0",
-    "nodemon": "^3.1.11",
-    "pug": "^3.0.3",
-    "pug-plain-loader": "^1.1.0",
-    "supertest": "^7.2.2"
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.0",
+    "supertest": "^6.3.3"
   }
 }

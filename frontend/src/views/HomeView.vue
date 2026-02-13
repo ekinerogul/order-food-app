@@ -1,21 +1,6 @@
 <script>
-import { useMainStore } from "@/stores/main";
-
 export default {
   name: "HomeView",
-  data() {
-    return {
-      store: useMainStore(),
-    };
-  },
-  methods: {
-    goUsers() {
-      this.$router.push({ name: "users" });
-    },
-    goRestaurants() {
-      this.$router.push({ name: "restaurants" });
-    },
-  },
 };
 </script>
 
@@ -23,7 +8,17 @@ export default {
 .home
   h1 Welcome to Order Food App
 
-  .actions
-    button(@click="goUsers") Users
-    button(@click="goRestaurants") Restaurants
+  div.section
+    h2 I am a Customer
+    div.links
+      router-link.btn(to="/users/register") Register
+      | &nbsp;or&nbsp;
+      router-link.btn(to="/users/login") Login
+
+  div.section
+    h2 I am a Restaurant
+    div.links
+      router-link.btn(to="/restaurants/register") Register
+      | &nbsp;or&nbsp;
+      router-link.btn(to="/restaurants/login") Login
 </template>

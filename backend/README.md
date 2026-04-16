@@ -2,6 +2,14 @@
 
 REST API service built with Express.js and MongoDB.
 
+## Live API
+
+Backend is deployed on Google Cloud Run:
+
+https://order-food-backend-443821973119.europe-west3.run.app
+
+The production API uses MongoDB Atlas for database storage.
+
 ## Tech Stack
 
 - Node.js

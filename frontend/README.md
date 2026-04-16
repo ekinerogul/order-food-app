@@ -2,6 +2,16 @@
 
 Single page application built with Vue.js 3. Provides separate interfaces for customers and restaurants.
 
+## Live Demo
+
+Frontend is deployed on Google Cloud Run:
+
+https://order-food-frontend-443821973119.europe-west3.run.app
+
+It connects to the production backend API:
+
+https://order-food-backend-443821973119.europe-west3.run.app
+
 ## Tech Stack
 
 - Vue.js 3 (Options API)

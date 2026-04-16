@@ -55,7 +55,7 @@ export default {
           this.email,
           this.password,
           this.name,
-          ageNum,
+          ageNum
         );
 
         this.$router.push(`/users/${user.id || user._id}/dashboard`);

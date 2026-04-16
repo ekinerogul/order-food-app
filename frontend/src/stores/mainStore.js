@@ -13,7 +13,7 @@ export const useMainStore = defineStore("main", {
       }
 
       const userAddress = userStore.currentUser.addresses.find(
-        (a) => a._id === addressId,
+        (a) => a._id === addressId
       );
 
       if (!userAddress) {

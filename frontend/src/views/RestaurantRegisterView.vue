@@ -68,8 +68,7 @@ export default {
       }
 
       if (this.city.length < 2) {
-        this.errorMessage =
-          "The city name must be at least 2 characters long.";
+        this.errorMessage = "The city name must be at least 2 characters long.";
         return;
       }
 
@@ -85,11 +84,11 @@ export default {
           this.password,
           this.name,
           this.ownerName,
-          address,
+          address
         );
 
         this.$router.push(
-          `/restaurants/${restaurant.id || restaurant._id}/dashboard`,
+          `/restaurants/${restaurant.id || restaurant._id}/dashboard`
         );
       } catch (error) {
         this.errorMessage = error.message || "Registration failed.";

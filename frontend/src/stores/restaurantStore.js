@@ -9,11 +9,17 @@ export const useRestaurantStore = defineStore("restaurant", {
     token: localStorage.getItem("restaurantToken") || null,
   }),
   actions: {
+    activateRestaurantSession() {
+      localStorage.removeItem("currentUser");
+      localStorage.removeItem("userToken");
+      localStorage.setItem("authRole", "restaurant");
+    },
+
     saveToStorage() {
       if (this.currentRestaurant) {
         localStorage.setItem(
           "currentRestaurant",
-          JSON.stringify(this.currentRestaurant),
+          JSON.stringify(this.currentRestaurant)
         );
       } else {
         localStorage.removeItem("currentRestaurant");
@@ -61,6 +67,7 @@ export const useRestaurantStore = defineStore("restaurant", {
 
         this.token = res.data.data.token;
         this.currentRestaurant = res.data.data;
+        this.activateRestaurantSession();
         this.saveToStorage();
         return res.data.data;
       } catch (error) {
@@ -78,6 +85,7 @@ export const useRestaurantStore = defineStore("restaurant", {
 
         this.token = res.data.data.token;
         this.currentRestaurant = res.data.data;
+        this.activateRestaurantSession();
         this.saveToStorage();
         return res.data.data;
       } catch (error) {
@@ -91,7 +99,7 @@ export const useRestaurantStore = defineStore("restaurant", {
         const res = await axios.patch(
           "/restaurants/me",
           { name },
-          { headers: this.getAuthHeader() },
+          { headers: this.getAuthHeader() }
         );
         this.currentRestaurant = res.data.data;
         this.saveToStorage();
@@ -108,7 +116,7 @@ export const useRestaurantStore = defineStore("restaurant", {
         const res = await axios.patch(
           "/restaurants/me/email",
           { email },
-          { headers: this.getAuthHeader() },
+          { headers: this.getAuthHeader() }
         );
         this.currentRestaurant = res.data.data;
         this.saveToStorage();
@@ -140,7 +148,7 @@ export const useRestaurantStore = defineStore("restaurant", {
         const res = await axios.post(
           "/restaurants/me/menu",
           { name, price, category },
-          { headers: this.getAuthHeader() },
+          { headers: this.getAuthHeader() }
         );
         this.currentRestaurant = res.data.data;
         this.saveToStorage();
@@ -156,7 +164,7 @@ export const useRestaurantStore = defineStore("restaurant", {
         const res = await axios.patch(
           `/restaurants/me/menu/${foodId}`,
           updateData,
-          { headers: this.getAuthHeader() },
+          { headers: this.getAuthHeader() }
         );
         this.currentRestaurant = res.data.data;
         this.saveToStorage();
@@ -194,7 +202,7 @@ export const useRestaurantStore = defineStore("restaurant", {
       const res = await axios.patch(
         `/orders/${orderId}/status`,
         { status },
-        { headers: this.getAuthHeader() },
+        { headers: this.getAuthHeader() }
       );
       return res.data.data;
     },
@@ -217,6 +225,9 @@ export const useRestaurantStore = defineStore("restaurant", {
     logout() {
       this.currentRestaurant = null;
       this.token = null;
+      if (localStorage.getItem("authRole") === "restaurant") {
+        localStorage.removeItem("authRole");
+      }
       this.saveToStorage();
     },
   },

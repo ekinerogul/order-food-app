@@ -8,7 +8,7 @@ export const useOrderStore = defineStore("order", {
         const res = await axios.post(
           "/orders",
           { restaurantId, items, addressId },
-          { headers: { Authorization: `Bearer ${token}` } },
+          { headers: { Authorization: `Bearer ${token}` } }
         );
         return res.data.data;
       } catch (error) {

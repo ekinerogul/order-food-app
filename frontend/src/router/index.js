@@ -55,7 +55,7 @@ const routes = [
     name: "restaurant-dashboard",
     component: RestaurantDashboardView,
     props: true,
-    meta: { requiresUserAuth: true },
+    meta: { requiresRestaurantAuth: true },
   },
 ];
 
@@ -64,15 +64,34 @@ const router = createRouter({
   routes,
 });
 
+function getActiveRole() {
+  const authRole = localStorage.getItem("authRole");
+  if (authRole) return authRole;
+
+  const userToken = localStorage.getItem("userToken");
+  const restaurantToken = localStorage.getItem("restaurantToken");
+
+  if (userToken && !restaurantToken) return "user";
+  if (restaurantToken && !userToken) return "restaurant";
+
+  return null;
+}
+
 router.beforeEach((to, from, next) => {
+  const activeRole = getActiveRole();
+
   if (to.meta.requiresUserAuth) {
     const userToken = localStorage.getItem("userToken");
-    if (!userToken) return next({ name: "user-login" });
+    if (!userToken || activeRole !== "user") {
+      return next({ name: "user-login" });
+    }
   }
 
   if (to.meta.requiresRestaurantAuth) {
     const restaurantToken = localStorage.getItem("restaurantToken");
-    if (!restaurantToken) return next({ name: "restaurant-login" });
+    if (!restaurantToken || activeRole !== "restaurant") {
+      return next({ name: "restaurant-login" });
+    }
   }
 
   next();

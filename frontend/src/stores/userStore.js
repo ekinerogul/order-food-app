@@ -8,6 +8,12 @@ export const useUserStore = defineStore("user", {
     token: localStorage.getItem("userToken") || null,
   }),
   actions: {
+    activateUserSession() {
+      localStorage.removeItem("currentRestaurant");
+      localStorage.removeItem("restaurantToken");
+      localStorage.setItem("authRole", "user");
+    },
+
     saveToStorage() {
       if (this.currentUser) {
         localStorage.setItem("currentUser", JSON.stringify(this.currentUser));
@@ -61,6 +67,7 @@ export const useUserStore = defineStore("user", {
 
         this.token = res.data.data.token;
         this.currentUser = res.data.data;
+        this.activateUserSession();
         this.saveToStorage();
         return res.data.data;
       } catch (error) {
@@ -75,6 +82,7 @@ export const useUserStore = defineStore("user", {
 
         this.token = res.data.data.token;
         this.currentUser = res.data.data;
+        this.activateUserSession();
         this.saveToStorage();
         return res.data.data;
       } catch (error) {
@@ -88,7 +96,7 @@ export const useUserStore = defineStore("user", {
         const res = await axios.patch(
           "/users/me",
           { name },
-          { headers: this.getAuthHeader() },
+          { headers: this.getAuthHeader() }
         );
         this.currentUser = res.data.data;
         this.saveToStorage();
@@ -105,7 +113,7 @@ export const useUserStore = defineStore("user", {
         const res = await axios.patch(
           "/users/me/email",
           { email },
-          { headers: this.getAuthHeader() },
+          { headers: this.getAuthHeader() }
         );
         this.currentUser = res.data.data;
         this.saveToStorage();
@@ -137,7 +145,7 @@ export const useUserStore = defineStore("user", {
         const res = await axios.patch(
           `/users/me/addresses/${addressId}`,
           updateData,
-          { headers: this.getAuthHeader() },
+          { headers: this.getAuthHeader() }
         );
         this.currentUser = res.data.data;
         this.saveToStorage();
@@ -183,6 +191,9 @@ export const useUserStore = defineStore("user", {
     logout() {
       this.currentUser = null;
       this.token = null;
+      if (localStorage.getItem("authRole") === "user") {
+        localStorage.removeItem("authRole");
+      }
       this.saveToStorage();
     },
   },

@@ -34,7 +34,7 @@ export default {
 div.restaurant-order-card(style="border: 1px solid #ddd; padding: 12px; margin: 8px 0; border-radius: 6px")
   div(style="display: flex; justify-content: space-between; align-items: center")
     strong Order {{ '#' + order._id?.slice(-6) }}
-    span(:style="{ color: order.status === 'delivered' ? '#27ae60' : order.status === 'cancelled' ? '#e74c3c' : '#f39c12', fontWeight: 'bold' }")
+    span.status-badge(:class="'status-' + order.status")
       | {{ order.status }}
 
   div(v-if="order.user" style="margin-top: 6px; font-size: 13px; color: #666")
@@ -55,6 +55,6 @@ div.restaurant-order-card(style="border: 1px solid #ddd; padding: 12px; margin: 
       v-for="status in nextStatuses"
       :key="status"
       @click="updateStatus(status)"
-      :style="{ padding: '4px 12px', cursor: 'pointer', background: status === 'cancelled' ? '#e74c3c' : '#27ae60', color: 'white', border: 'none', borderRadius: '4px' }"
+      :class="['status-action', 'status-action-' + status]"
     ) {{ status }}
 </template>

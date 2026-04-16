@@ -14,7 +14,7 @@ export default {
 div.order-card(style="border: 1px solid #ddd; padding: 12px; margin: 8px 0; border-radius: 6px")
   div(style="display: flex; justify-content: space-between; align-items: center")
     strong Order {{ '#' + order._id?.slice(-6) }}
-    span.status-badge(:style="{ color: order.status === 'delivered' ? '#27ae60' : order.status === 'cancelled' ? '#e74c3c' : '#f39c12' }")
+    span.status-badge(:class="'status-' + order.status")
       | {{ order.status }}
 
   div(v-if="order.items && order.items.length" style="margin-top: 8px")

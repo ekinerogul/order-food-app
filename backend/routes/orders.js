@@ -73,8 +73,18 @@ router.get("/search", async (req, res, next) => {
 
     const query = {};
 
-    if (foodName) query["items.foodName"] = foodName;
-    if (city) query["address.city"] = new RegExp(city, "i");
+    if (foodName) {
+      query.items = {
+        $elemMatch: {
+          foodName: foodName,
+        },
+      };
+    }
+
+    if (city) {
+      query.address = {};
+      query.address.city = new RegExp(city, "i");
+    }
 
     if (status) {
       const validStatuses = [

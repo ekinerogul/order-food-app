@@ -42,13 +42,13 @@ export default {
 
     activeOrders() {
       return this.orders.filter(
-        (o) => o.status === "confirmed" || o.status === "preparing",
+        (o) => o.status === "confirmed" || o.status === "preparing"
       );
     },
 
     completedOrders() {
       return this.orders.filter(
-        (o) => o.status === "delivered" || o.status === "cancelled",
+        (o) => o.status === "delivered" || o.status === "cancelled"
       );
     },
   },
@@ -67,7 +67,7 @@ export default {
     async loadData() {
       try {
         this.restaurant = await this.restaurantStore.fetchRestaurant(
-          this.restaurantId,
+          this.restaurantId
         );
         this.restaurantStore.currentRestaurant = this.restaurant;
         this.restaurantStore.saveToStorage();
@@ -92,8 +92,7 @@ export default {
       }
 
       if (this.newFood.name.length < 2) {
-        this.errorMessage =
-          "The food name must be at least 2 characters long.";
+        this.errorMessage = "The food name must be at least 2 characters long.";
         return;
       }
 

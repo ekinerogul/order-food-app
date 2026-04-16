@@ -29,11 +29,11 @@ export default {
       try {
         const restaurant = await this.restaurantStore.loginRestaurant(
           this.email,
-          this.password,
+          this.password
         );
 
         this.$router.push(
-          `/restaurants/${restaurant.id || restaurant._id}/dashboard`,
+          `/restaurants/${restaurant.id || restaurant._id}/dashboard`
         );
       } catch (error) {
         this.errorMessage = error.message || "Login failed.";

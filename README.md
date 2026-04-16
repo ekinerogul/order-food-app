@@ -1,6 +1,6 @@
 # Order Food App
 
-A food ordering application where customers can order from restaurants, and restaurants can manage their menus and orders.
+A full-stack food ordering application where customers can order from restaurants, and restaurants can manage their menus and incoming orders.
 
 This is my first full-stack project, built from scratch using the technologies I learned during the Coyotiv coding bootcamp.
 
@@ -22,26 +22,59 @@ If you do not want to create a new account, you can try the app with this demo c
 
 - **Frontend:** Vue.js 3, Pinia, Vue Router, Axios, Pug
 - **Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT
-- **DevOps:** Docker, Docker Compose, Google Cloud Run, MongoDB Atlas
+- **Database:** MongoDB Atlas in production, MongoDB locally
+- **DevOps:** Docker, Docker Compose, Google Cloud Run
+
+## Features
+
+### Customer Side
+
+- Register and login with JWT authentication
+- Add, edit, and remove delivery addresses
+- Search restaurants by name or food
+- Place food orders
+- View order history
+- Update profile information
+
+### Restaurant Side
+
+- Register and login as a restaurant
+- Add, edit, and remove menu items
+- View incoming orders
+- Update order statuses
+- Update restaurant profile and address information
 
 ## Project Structure
 
-```
+```text
 order-food-app/
 ├── frontend/          # Vue.js frontend application
 ├── backend/           # Express.js REST API
-├── data/              # MongoDB database files (volume)
-├── docker-compose.yml # Spins up all services
+├── data/              # Local MongoDB database files
+├── docker-compose.yml # Local Docker setup
 └── README.md
 ```
 
-## Getting Started
+## Local Setup
 
 Docker and Docker Compose must be installed.
+
+Clone the repository:
 
 ```bash
 git clone <repo-url>
 cd order-food-app
+```
+
+Create a local `.env` file in the project root:
+
+```env
+MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/projectz
+```
+
+Start the project:
+
+```bash
 docker compose up --build
 ```
 
@@ -51,23 +84,12 @@ Once running:
 - **Backend API:** http://localhost:3000
 - **MongoDB:** localhost:27017
 
-## Features
+## Deployment
 
-**Customer side:**
+The deployed version runs on Google Cloud Run:
 
-- Register and login (JWT authentication)
-- Add, edit, and remove addresses
-- Search restaurants by name or food
-- Place food orders
-- View order history
-- Update profile information
-
-**Restaurant side:**
-
-- Register and login
-- Menu management (add, edit, remove food items)
-- View incoming orders and update their status
-- Update profile and address information
+- The backend service connects to MongoDB Atlas with `MONGODB_CONNECTION_STRING`.
+- The frontend is configured to call the deployed backend API.
 
 ## License
 

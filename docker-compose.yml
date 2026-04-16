@@ -12,7 +12,7 @@ services:
   backend:
     build: ./backend
     environment:
-      - MONGODB_CONNECTION_STRING=mongodb://mongodb:27017/projectz
+      - MONGODB_CONNECTION_STRING=${MONGODB_CONNECTION_STRING}
     ports: 
       - "3000:3000"
     depends_on:

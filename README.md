@@ -4,11 +4,25 @@ A food ordering application where customers can order from restaurants, and rest
 
 This is my first full-stack project, built from scratch using the technologies I learned during the Coyotiv coding bootcamp.
 
+## Live Demo
+
+- **Frontend:** https://order-food-frontend-443821973119.europe-west3.run.app
+- **Backend API:** https://order-food-backend-443821973119.europe-west3.run.app
+
+The production version is deployed on Google Cloud Run and uses MongoDB Atlas for database storage.
+
+## Demo Account
+
+If you do not want to create a new account, you can try the app with this demo customer account:
+
+- **Email:** user1@gmail.com
+- **Password:** user1.
+
 ## Tech Stack
 
 - **Frontend:** Vue.js 3, Pinia, Vue Router, Axios, Pug
 - **Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT
-- **DevOps:** Docker, Docker Compose
+- **DevOps:** Docker, Docker Compose, Google Cloud Run, MongoDB Atlas
 
 ## Project Structure
 

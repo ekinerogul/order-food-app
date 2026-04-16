@@ -1,0 +1,463 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #097150;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+
+#app {
+  min-height: 100vh;
+}
+
+.home,
+.login,
+.register,
+.dashboard,
+.createorder {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 40px 0;
+}
+
+h1 {
+  margin: 0 0 24px;
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 32px 0 16px;
+  font-size: 22px;
+}
+
+h3 {
+  margin: 24px 0 12px;
+  font-size: 18px;
+}
+
+h1,
+h2,
+h3 {
+  color: #000;
+}
+
+p {
+  margin: 8px 0;
+}
+
+.form,
+.add-food-form,
+.address-form {
+  max-width: 420px;
+}
+
+input {
+  width: 100%;
+  height: 42px;
+  margin: 4px 0 12px;
+  padding: 0 12px;
+  border: 1px solid #7ccfad;
+  border-radius: 8px;
+  background: #c9f0e2 !important;
+  color: #07140f;
+  font-size: 15px;
+}
+
+input::placeholder {
+  color: #4f6b61;
+}
+
+button,
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid #d6a51e;
+  border-radius: 8px;
+  background: #064d37;
+  color: #d6a51e;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover,
+.btn:hover {
+  background: #043b2a;
+  color: #f0c64a;
+}
+
+button:disabled {
+  background: #a8b3bd;
+  cursor: not-allowed;
+}
+
+a {
+  color: #12823d;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.logout-btn {
+  background: #24292f;
+}
+
+.logout-btn:hover {
+  background: #111827;
+}
+
+.section {
+  margin: 20px 0;
+  padding: 20px;
+  background: #bfead9;
+  border: 1px solid #7ccfad;
+  border-radius: 8px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.order-card,
+.restaurant-order-card,
+.address-item {
+  background: #bfead9 !important;
+  border: 1px solid #7ccfad !important;
+  border-radius: 8px !important;
+  padding: 14px !important;
+  margin: 10px 0 !important;
+  color: #07140f;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.menu-item-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: #bfead9 !important;
+  border: 1px solid #7ccfad !important;
+  border-radius: 8px;
+  padding: 14px 16px !important;
+  margin: 10px 0;
+  color: #000000;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.error-msg,
+.warning-msg {
+  color: #dc2626;
+}
+
+.success-msg {
+  color: #16a34a;
+}
+
+.muted {
+  color: #667085;
+}
+
+@media (max-width: 640px) {
+  .home,
+  .login,
+  .register,
+  .dashboard,
+  .createorder {
+    width: min(100% - 24px, 960px);
+    padding: 28px 0;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  .header-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  button,
+  .btn {
+    width: 100%;
+  }
+}
+
+a {
+  color: #d6a51e;
+  font-weight: 700;
+}
+
+a:hover {
+  color: #f0c64a;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+}
+
+.address-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.address-item label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  color: #000 !important;
+}
+
+.address-item button {
+  flex: 0 0 auto;
+  width: auto !important;
+}
+
+.muted {
+  color: #000 !important;
+}
+
+.error-msg,
+p[style*="color: red"] {
+  color: #c1121f !important;
+  font-weight: 700;
+}
+
+.warning-msg {
+  color: #c1121f !important;
+  font-weight: 700;
+}
+
+.success-msg {
+  color: #0b6b3a !important;
+  font-weight: 700;
+}
+
+.menu-item-card,
+.menu-item-card strong,
+.menu-item-card span {
+  color: #000 !important;
+}
+
+.order-card,
+.order-card strong,
+.order-card div,
+.restaurant-order-card,
+.restaurant-order-card strong,
+.restaurant-order-card div {
+  color: #000 !important;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 3px 10px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  text-transform: capitalize;
+}
+
+.status-pending {
+  background: #fff3cd;
+  border: 1px solid #d6a51e;
+  color: #7a4f00 !important;
+}
+
+.status-confirmed {
+  background: #d7f5ea;
+  border: 1px solid #0f8f61;
+  color: #064d37 !important;
+}
+
+.status-preparing {
+  background: #ffe7cc;
+  border: 1px solid #d97706;
+  color: #8a3d00 !important;
+}
+
+.status-delivered {
+  background: #d8f5df;
+  border: 1px solid #15803d;
+  color: #0b5d2a !important;
+}
+
+.status-cancelled {
+  background: #ffd6d6;
+  border: 1px solid #c1121f;
+  color: #8f0f18 !important;
+}
+
+.status-action {
+  width: auto !important;
+  min-height: 32px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  text-transform: capitalize;
+}
+
+.status-action-confirmed,
+.status-action-preparing,
+.status-action-delivered {
+  background: #064d37 !important;
+  border-color: #d6a51e !important;
+  color: #d6a51e !important;
+}
+
+.status-action-cancelled {
+  background: #8f0f18 !important;
+  border-color: #ffb3b3 !important;
+  color: #fff !important;
+}
+
+.createorder-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.delivery-address,
+.search-panel,
+.restaurant-result {
+  background: #bfead9 !important;
+  border: 1px solid #7ccfad !important;
+  border-radius: 8px;
+  color: #000;
+}
+
+.delivery-address {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+}
+
+.search-panel {
+  margin-bottom: 16px;
+  padding: 14px;
+}
+
+.search-panel h3,
+.restaurant-menu-panel h3 {
+  margin-top: 0;
+}
+
+.search-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.search-row input {
+  flex: 1 1 220px;
+}
+
+.search-row button {
+  width: auto;
+}
+
+.restaurant-result {
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.restaurant-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  background: #bfead9 !important;
+  color: #000;
+  cursor: pointer;
+}
+
+.restaurant-toggle + .restaurant-menu-panel {
+  border-top: 1px solid #7ccfad;
+}
+
+.restaurant-address {
+  margin: 4px 0 0;
+  color: #000 !important;
+  font-size: 13px;
+}
+
+.restaurant-menu-panel {
+  padding: 14px 16px;
+  background: #0d714f;
+  color: #000;
+}
+
+.order-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #7ccfad;
+  color: #000;
+}
+
+.order-menu-item strong,
+.food-price,
+.food-category {
+  color: #000 !important;
+}
+
+.food-price {
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.food-category {
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.selected-food {
+  margin-top: 12px;
+  padding: 12px;
+  background: #bfead9;
+  border: 1px solid #7ccfad;
+  border-radius: 8px;
+  color: #000;
+}
+
+.quantity-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.quantity-input {
+  width: 72px !important;
+  margin: 0;
+}

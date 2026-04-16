@@ -1,105 +1,60 @@
-# 🍔 Order Food App
+# Order Food App
 
-A full-stack food ordering application built during my software development bootcamp. Users can register, browse restaurants, and place orders. Restaurant owners can register and manage their menus.
+A food ordering application where customers can order from restaurants, and restaurants can manage their menus and orders.
 
-## ✨ Current Features
+This is my first full-stack project, built from scratch using the technologies I learned during the Coyotiv coding bootcamp.
 
-### For Users:
+## Tech Stack
 
-- ✅ User registration with email/password
-- ✅ Browse restaurants and view menus
-- ✅ Place orders with multiple items
-- ✅ Add multiple delivery addresses
+- **Frontend:** Vue.js 3, Pinia, Vue Router, Axios, Pug
+- **Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT
+- **DevOps:** Docker, Docker Compose
 
-### For Restaurant Owners:
+## Project Structure
 
-- ✅ Restaurant registration
-- ✅ Add menu items with prices and categories
-- ✅ Set working hours
+```
+order-food-app/
+├── frontend/          # Vue.js frontend application
+├── backend/           # Express.js REST API
+├── data/              # MongoDB database files (volume)
+├── docker-compose.yml # Spins up all services
+└── README.md
+```
 
-## 🛠️ Tech Stack
+## Getting Started
 
-**Frontend:**
-
-- Vue.js 3
-- Pinia (State Management)
-- Vue Router
-- Axios
-
-**Backend:**
-
-- Node.js & Express.js
-- MongoDB with Mongoose
-- RESTful API design
-
-**DevOps:**
-
-- Docker & Docker Compose
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18+
-- Docker & Docker Compose
-
-### Installation
-
-1. Clone the repository:
+Docker and Docker Compose must be installed.
 
 ```bash
-git clone https://github.com/ekinerogul/order-food-app.git
+git clone <repo-url>
 cd order-food-app
+docker compose up --build
 ```
 
-2. Run with Docker:
+Once running:
 
-```bash
-docker-compose up --build
-```
+- **Frontend:** http://localhost:8080
+- **Backend API:** http://localhost:3000
+- **MongoDB:** localhost:27017
 
-The application will be available at:
+## Features
 
-- Frontend: http://localhost:8080
-- Backend API: http://localhost:3000
+**Customer side:**
 
-## 📚 API Endpoints
+- Register and login (JWT authentication)
+- Add, edit, and remove addresses
+- Search restaurants by name or food
+- Place food orders
+- View order history
+- Update profile information
 
-### Users
+**Restaurant side:**
 
-- `POST /users/register` - Register new user
-- `POST /users/login` - User login
-- `POST /users/:userId/addresses` - Add delivery address
-- `POST /users/:userId/orders` - Create order
+- Register and login
+- Menu management (add, edit, remove food items)
+- View incoming orders and update their status
+- Update profile and address information
 
-### Restaurants
+## License
 
-- `POST /restaurants/register` - Register restaurant
-- `POST /restaurants/login` - Restaurant login
-- `PATCH /restaurants/:restaurantId/menu` - Add menu item
-
-### Orders
-
-- `GET /orders` - List all orders
-- `GET /orders/search` - Search orders
-
-## 📖 What I Learned
-
-- Building RESTful APIs with Express
-- MongoDB database design and relationships
-- Vue.js component architecture and state management
-- Docker containerization for full-stack apps
-- API endpoint design and testing
-
-## 🎯 Planned Features
-
-- User login page
-- Restaurant owner dashboard
-- Order status tracking
-- User reviews and ratings
-- Password hashing (bcrypt)
-- Payment integration
-
-## 👤 Author
-
-Ekin Eroğul - [GitHub](https://github.com/ekinerogul)
+This project was built for educational purposes.
